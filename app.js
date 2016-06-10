@@ -4,9 +4,10 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var mongoose = require('mongoose');
 
 var routes = require('./routes/index');
-
+var markers = require('./models/markersites');
 
 var app = express();
 
@@ -23,7 +24,6 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', routes);
-
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -48,7 +48,7 @@ if (app.get('env') === 'development') {
 
 // production error handler
 // no stacktraces leaked to user
-app.use(function(err, req, res, next) {
+app.use(function(err, req, res) {
   res.status(err.status || 500);
   res.render('error', {
     message: err.message,
@@ -56,5 +56,13 @@ app.use(function(err, req, res, next) {
   });
 });
 
+app.get('/markers', function(req, res){
+  Genre.getmarkers(function(err, markers){
+    if(err){
+      throw err;
+    }
+    res.json(markers);
+  });
+});
 
 module.exports = app;
