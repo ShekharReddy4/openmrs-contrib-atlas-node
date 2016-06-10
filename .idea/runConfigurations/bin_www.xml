@@ -1,9 +1,0 @@
-<component name="ProjectRunConfigurationManager">
-  <configuration default="false" name="bin/www" type="NodeJSConfigurationType" factoryName="Node.js" path-to-node="project" path-to-js-file="$USER_HOME$/openmrs-contrib-atlas-node/bin/www" working-dir="$USER_HOME$/openmrs-contrib-atlas-node">
-    <envs>
-      <env name="DEBUG" value="atlas-contrib-node:*" />
-    </envs>
-    <browser url="http://localhost:3000/" />
-    <method />
-  </configuration>
-</component>
