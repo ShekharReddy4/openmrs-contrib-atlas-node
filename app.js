@@ -5,7 +5,7 @@ var favicon = require('serve-favicon');
 var bodyParser = require('body-parser');
 
 var indexroute = require('./routes/index');
-var markersiteroute = require('./routes/markersites');
+var markersiteroute = require('./routes/markerSites');
 var app = express();
 
 // view engine setup
@@ -21,7 +21,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // routes
 app.use('/', indexroute);
-app.use('/markersites', markersiteroute);
+app.use('/markerSites', markersiteroute);
 
 
 // catch 404 and forward to error handler

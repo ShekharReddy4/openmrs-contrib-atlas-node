@@ -13,7 +13,7 @@ var connection = mysql.createConnection({
 //get the conncetion
 connection.connect();
 
-/* GET all the markersites */
+/* GET all the markerSites */
 router.get('/', function(req, res, next) {
 
     connection.query("select * from atlas", function (error, rows, field) {
