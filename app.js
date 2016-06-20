@@ -15,7 +15,7 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
 // favicon setup 
-app.use(favicon(path.join('public', 'images','favicon.ico')));
+app.use(favicon(path.join('public','favicon.ico')));
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));

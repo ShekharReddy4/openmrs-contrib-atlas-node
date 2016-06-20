@@ -27,9 +27,9 @@ router.get('/markerSites', function(req, res, next) {
             console.log('error');
         }
         else{
-            var data  = JSON.stringify(rows);
+            //var data  = JSON.stringify(rows);
             res.setHeader('Content-Type', 'application/json');
-            res.send(data);
+            res.json(rows);
             //console.log(JSON.stringify(rows));
             connection.end();
         }
