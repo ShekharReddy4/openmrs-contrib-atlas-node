@@ -30,6 +30,7 @@ router.get('/markerSites', function(req, res, next) {
             //var data  = JSON.stringify(rows);
             res.setHeader('Content-Type', 'application/json');
             res.json(rows);
+            console.log('it is executing');
             //console.log(JSON.stringify(rows));
             connection.end();
         }
