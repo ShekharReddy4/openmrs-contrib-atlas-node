@@ -11,24 +11,30 @@ var connection = mysql.createConnection({
 });
 
 //get the conncetion
-connection.connect();
+connection.connect(function (error) {
+    if(!!error){
+        console.log('Error');
+    }else{
+        console.log('connected');
+    }
+});
 
 /* GET all the markerSites */
-router.get('/', function(req, res, next) {
-
-    connection.query("select * from atlas", function (error, rows, field) {
+router.get('/markerSites', function(req, res, next) {
+    
+    connection.query("SELECT * FROM atlas", function (error, rows, field) {
         if(!!error){
-            throw err;
+            console.log('error');
         }
         else{
-            console.log(rows);
+            console.log(rows[1]);
+            connection.end();
         }
     });
-
+    
+    //jus for now, i should chnage this later
     res.render('index', { title: 'OpenMRS Atlas' });
+    
 });
 
 module.exports = router;
-
-
-
