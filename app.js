@@ -6,6 +6,8 @@ var bodyParser = require('body-parser');
 
 var index = require('./routes/index');
 var markerSites = require('./routes/markerSites');
+var distributions = require('./routes/distributions');
+
 var app = express();
 
 // view engine setup
@@ -22,5 +24,6 @@ app.use(express.static(path.join(__dirname, 'public')));
 // routes
 app.use(index);
 app.use(markerSites);
+app.use(distributions);
 
 module.exports = app;
