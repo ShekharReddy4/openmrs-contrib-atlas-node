@@ -11,6 +11,8 @@ Installation of server
 
 :- populate the database.
 
+:- clone the repo from [here](https://github.com/ShekharReddy4/atlas-mock-id) and follow the installation instructions there to get mock id auth to atlas (not required now i.e: will update when mandatory)
+
 :- Run the app.
 
 
