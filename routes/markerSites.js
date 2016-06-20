@@ -27,13 +27,16 @@ router.get('/markerSites', function(req, res, next) {
             console.log('error');
         }
         else{
-            console.log(rows[1]);
+            var data  = JSON.stringify(rows);
+            res.setHeader('Content-Type', 'application/json');
+            res.send(data);
+            //console.log(JSON.stringify(rows));
             connection.end();
         }
     });
     
     //jus for now, i should chnage this later
-    res.render('index', { title: 'OpenMRS Atlas' });
+    //res.render('index', { title: 'OpenMRS Atlas' });
     
 });
 
