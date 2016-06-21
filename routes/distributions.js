@@ -10,7 +10,7 @@ var connection = mysql.createConnection({
     database : 'atlas'
 });
 
-//get the conncetion
+//get the connection
 connection.connect(function (error) {
     if(!!error){
         console.log('Error');
@@ -35,7 +35,7 @@ router.get('/distributions', function(req, res, next) {
         }
     });
 
-    //jus for now, i should chnage this later
+    //jus for now, i should change this later
     //res.render('index', { title: 'OpenMRS Atlas' });
 
 });
