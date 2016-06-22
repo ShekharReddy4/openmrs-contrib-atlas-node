@@ -36,7 +36,7 @@ router.get('/markerSites', function(req, res, next) {
         }
     });
     
-    //jus for now, i should chnage this later
+    //jus for now, i should change this later
     //res.render('index', { title: 'OpenMRS Atlas' });
     
 });
