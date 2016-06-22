@@ -17,6 +17,6 @@ Installation of server
 
 Note:
 
- npm install --save <package name>   -----> is to install and save a module in package.json
+ npm install --save package-name   -----> is to install and save a module in package.json
 
- npm rm --save <package name>        -----> is to remove a module in package.json
+ npm rm --save package-name        -----> is to remove a module in package.json
