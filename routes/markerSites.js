@@ -24,21 +24,41 @@ router.get('/markerSites', function(req, res, next) {
     
     connection.query("SELECT * FROM atlas", function (error, rows, field) {
         if(!!error){
-            console.log('error');
+            console.log(error);
         }
         else{
             //var data  = JSON.stringify(rows);
             res.setHeader('Content-Type', 'application/json');
             res.json(rows);
-            console.log('it is executing');
+           // console.log('it is executing');
+            //connection.end();
             //console.log(JSON.stringify(rows));
-            connection.end();
         }
     });
     
     //jus for now, i should change this later
     //res.render('index', { title: 'OpenMRS Atlas' });
-    
+
 });
+
+/*Get a specific marker with uid parameter*/
+router.get('/marker/:id', function (req, res, next) {
+    
+    var id=req.params['id'];
+    connection.query('select * from atlas where id=?',[id], function (error, rows, field) {
+
+        if(!!error){
+            console.log(error);
+        }
+        else {
+            res.setHeader('Content-Type', 'application/json');
+            res.json(rows);
+            //connection.end();
+        }
+    })
+});
+
+//close the connection
+//connection.end();
 
 module.exports = router;

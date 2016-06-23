@@ -5,6 +5,7 @@ var favicon = require('serve-favicon');
 var bodyParser = require('body-parser');
 var morgan = require('morgan');
 
+//routes
 var index = require('./routes/index');
 var markerSites = require('./routes/markerSites');
 var distributions = require('./routes/distributions');
