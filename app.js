@@ -4,6 +4,7 @@ var path = require('path');
 var favicon = require('serve-favicon');
 var bodyParser = require('body-parser');
 var morgan = require('morgan');
+var uuid = require('uuid');
 
 //routes
 var index = require('./routes/index');
@@ -11,6 +12,7 @@ var markerSites = require('./routes/markerSites');
 var distributions = require('./routes/distributions');
 
 var app = express();
+console.log(uuid.v4());
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
