@@ -57,11 +57,14 @@ router.get('/marker/:id', function (req, res, next) {
         }
     })
 });
+//markers?types=:types&versions=:versions&dists=:dists
+router.get('/markers', function (req, res, next) {
 
-router.get('markers?types=:types&versions=:versions&dists=:dists', function (req, res, next) {
-
-    var id=req.params['id'];
-    connection.query('select * from we where sid=?',[id], function (error, rows, field) {
+    var types=req.query['type'];
+    var versions=req.query['versions'];
+    var dists=req.query['dists'];
+    //console.log(types+versions+dists);
+    connection.query('select * from atlas where type=? and openmrs_version=? and distribution=?',[types,versions,dists], function (error, rows, field) {
 
         if(!!error){
             console.log(error);
@@ -74,6 +77,23 @@ router.get('markers?types=:types&versions=:versions&dists=:dists', function (req
     })
 });
 
+//POST /marker/:id
+router.post('/markers:id', function (req, res, next) {
+
+    var id=req.params['id'];
+    console.log(id);
+    connection.query('select * from atlas where type=? and openmrs_version=? and distribution=?',[types,versions,dists], function (error, rows, field) {
+
+        if(!!error){
+            console.log(error);
+        }
+        else {
+            res.setHeader('Content-Type', 'application/json');
+            res.json(rows);
+            //connection.end();
+        }
+    })
+});
 
 //close the connection
 //connection.end();
