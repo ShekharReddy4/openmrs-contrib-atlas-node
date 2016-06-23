@@ -58,6 +58,23 @@ router.get('/marker/:id', function (req, res, next) {
     })
 });
 
+router.get('markers?types=:types&versions=:versions&dists=:dists', function (req, res, next) {
+
+    var id=req.params['id'];
+    connection.query('select * from we where sid=?',[id], function (error, rows, field) {
+
+        if(!!error){
+            console.log(error);
+        }
+        else {
+            res.setHeader('Content-Type', 'application/json');
+            res.json(rows);
+            //connection.end();
+        }
+    })
+});
+
+
 //close the connection
 //connection.end();
 
