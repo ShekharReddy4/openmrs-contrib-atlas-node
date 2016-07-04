@@ -20,7 +20,8 @@ body {
         width: 340px;   
 }
 #map_canvas {
-        height: 100%;
+        width: 80%;
+        height: 80%;
 }
 a.implementation-id {
         padding-top: 3em;
