@@ -213,6 +213,10 @@ function initialize() {
         });
 }
 
+
+
+
+
 function fetchMarkerSites() {
     $.ajax({url: "/markerSites"})
         .always(function (data, textStatus) {
