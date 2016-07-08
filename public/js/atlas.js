@@ -202,10 +202,10 @@ function initialize() {
     var help = document.getElementById("help");
     map.controls[google.maps.ControlPosition.TOP_RIGHT].push(help);
 
-    if (moduleUUID !== null) {
+   /* if (moduleUUID !== null) {
         var alert = document.getElementById("alert");
         map.controls[google.maps.ControlPosition.BOTTOM_CENTER].push(alert);
-    }
+    }*/
 
     fetchDistributions()
         .always(function(){

@@ -24,12 +24,34 @@
   <script type="text/javascript" src="https://googlemaps.github.io/js-marker-clusterer/src/markerclusterer.js"></script>
   <script type="text/javascript">
 
+    var auth = null;
+    var moduleUUID = null;
+    var counts = {};
+    var countsEnabled = 1;
+    var moduleHasSite = null;
+
     var viewParam = {
       site : null,
       position : new google.maps.LatLng(15,15),
-      zoom : 3,
+      zoom : 3
     };
-
+    var currentUser;
+    var userEmail;
+    var userName;
+    var nextSite = 0;
+    var map;
+    var clusters;
+    var clustersEnabled = 0;
+    var sites = [];
+    var types = [];
+    var existingVersion = [];
+    var version = [];
+    var unknownVersion = 0;
+    var otherVersion = 0;
+    var images = [];
+    var shadows = [];
+    var fadeOverTime = true;
+    var legendGroups = 0;
     setTimeout('initialize()', 500);
   </script>
 
@@ -38,6 +60,18 @@
 
 <div id="map_title"></div>
 <div id="map_canvas" style="width:100%; height:100%"></div>
-
+<div id="legend" class="control"></div>
+<div class="atlas-container control screen" id ="download">
+  <div class="dropDownControl control"
+       title="Click to download a screenshot" id ="down-screen">
+    <i class="fa fa-download"></i></span> Download
+  </div>
+  <div class = "dropDownOptionsDiv screen" id="screen">
+    <div class = "dropDownItemDiv screen" id="1024x768"><i class="fa fa-file-image-o"></i>1024x768</div>
+    <div class = "dropDownItemDiv screen" id="1280x1024"><i class="fa fa-file-image-o"></i>1920x1080</div>
+    <div class = "dropDownItemDiv screen" id="3840x2160"><i class="fa fa-file-image-o"></i>3840x2160</div>
+    <div class="separatorDiv"></div>
+  </div>
+</div>
 </body>
 </html>
