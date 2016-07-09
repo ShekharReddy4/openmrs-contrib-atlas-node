@@ -73,5 +73,34 @@
     <div class="separatorDiv"></div>
   </div>
 </div>
+<div class="atlas-container loginControl dropDownControl control" title="Click to sign in with your OpenMRS ID" id ="login">
+  <span class="glyphicon glyphicon-log-in"></span>
+</div>
+<div class="atlas-container loginControl dropDownControl control" title="How to place my information on the Atlas" id ="help">
+  <span class="glyphicon glyphicon-question-sign"></span> Help
+</div>
+<div tabindex="1" class="atlas-container loginControl dropDownControl control" title="Share this Atlas view" id ="share">
+  <span class="glyphicon glyphicon-share"></span> Share
+</div>
+<div class="atlas-container control login" id ="marker-groups">
+  <div class="dropDownControl enabled" id="groups" title="Click to switch legend"><img src="images/group-dot.png"><b> View</b></div>
+  <div class = "dropDownOptionsDiv" id="legendChoice">
+    <div class = "dropDownItemDiv" id="legend-group"> <label><input type="checkbox" id="group-checkbox"><b>Group</b></label></div>
+    <div class = "dropDownItemDiv enabled group-item" id="legend-type"><img src="images/group-dot.png"><b>Types</b></div>
+    <div class = "dropDownItemDiv group-item" id="legend-version"><img src="images/group-dot.png"><b>Versions</b></div>
+    <div class = "dropDownItemDiv group-item" id="legend-distribution"><img src="images/group-dot.png"><b>Distros</b></div>
+    <div class = "dropDownItemDiv" id="fade" title="Fade outdated sites over time.">
+      <label><input type="checkbox" id="fadeCheckbox"><b>Fading</b></label>
+    </div>
+    <div class = "dropDownItemDiv" id="legend-clusters" title="Enable markers clustering.">
+      <label><input type="checkbox" id="clusters-checkbox"><b>Clustering</b></label>
+    </div>
+  </div>
+</div>
+<div id='atlas-hidden-latitude' style='hidden:true;'></div>
+<div id='atlas-hidden-longitude' style='hidden:true;'></div>
+<input type="hidden" id="user-id" value="{{ $user->uid }} " />
+<input type="hidden" id="user-name" value="{{ $user->name }} " />
+<input type="hidden" id="user-email" value="{{ $user->email }} " />
 </body>
 </html>

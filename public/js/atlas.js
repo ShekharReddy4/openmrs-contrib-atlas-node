@@ -458,8 +458,8 @@ function loadSites(json) {
         repaintMarkers();
         if (site.version)
             version.push(versionMajMinForSite(site));
-        if (moduleHasSite !== 1 && auth_site.indexOf(site.uuid) !== -1 && moduleUUID !== null && auth_site.length === 1)
-            uniqueMarker = marker;
+       /* if (moduleHasSite !== 1 && auth_site.indexOf(site.uuid) !== -1 && moduleUUID !== null && auth_site.length === 1)
+            uniqueMarker = marker;*/
         sites[site.id] = {
             "siteData": site,
             "marker": marker,
