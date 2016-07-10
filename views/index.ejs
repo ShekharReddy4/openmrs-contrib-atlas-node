@@ -53,9 +53,21 @@
     var fadeOverTime = true;
     var legendGroups = 0;
     setTimeout('initialize()', 500);
+
+    $(document).ready(function() {
+
+      initLegendChoice();
+      initLoginButton();
+      initDownloadButton();
+
+      if (currentUser == '') currentUser = 'visitor';
+
+    });
+
   </script>
 
 </head>
+
 <body>
 
 <div id="map_title"></div>
@@ -64,7 +76,7 @@
 <div class="atlas-container control screen" id ="download">
   <div class="dropDownControl control"
        title="Click to download a screenshot" id ="down-screen">
-    <i class="fa fa-download"></i></span> Download
+    <span><i class="fa fa-download"></i></span>Download
   </div>
   <div class = "dropDownOptionsDiv screen" id="screen">
     <div class = "dropDownItemDiv screen" id="1024x768"><i class="fa fa-file-image-o"></i>1024x768</div>
@@ -99,8 +111,8 @@
 </div>
 <div id='atlas-hidden-latitude' style='hidden:true;'></div>
 <div id='atlas-hidden-longitude' style='hidden:true;'></div>
-<input type="hidden" id="user-id" value="{{ $user->uid }} " />
-<input type="hidden" id="user-name" value="{{ $user->name }} " />
-<input type="hidden" id="user-email" value="{{ $user->email }} " />
+
+
 </body>
+
 </html>
