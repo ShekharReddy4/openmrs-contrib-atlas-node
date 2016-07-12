@@ -60,7 +60,7 @@
       initLoginButton();
       initDownloadButton();
 
-      if (currentUser == '') currentUser = 'visitor';
+      currentUser = 'visitor';
 
     });
 
@@ -71,8 +71,11 @@
 <body>
 
 <div id="map_title"></div>
+
 <div id="map_canvas" style="width:100%; height:100%"></div>
+
 <div id="legend" class="control"></div>
+
 <div class="atlas-container control screen" id ="download">
   <div class="dropDownControl control"
        title="Click to download a screenshot" id ="down-screen">
@@ -85,17 +88,23 @@
     <div class="separatorDiv"></div>
   </div>
 </div>
+
 <div class="atlas-container loginControl dropDownControl control" title="Click to sign in with your OpenMRS ID" id ="login">
   <span class="glyphicon glyphicon-log-in"></span>Sign In
 </div>
+
 <div class="atlas-container loginControl dropDownControl control" title="How to place my information on the Atlas" id ="help">
   <span class="glyphicon glyphicon-question-sign"></span> Help
 </div>
+
 <div tabindex="1" class="atlas-container loginControl dropDownControl control" title="Share this Atlas view" id ="share">
   <span class="glyphicon glyphicon-share"></span> Share
 </div>
+
 <div class="atlas-container control login" id ="marker-groups">
+
   <div class="dropDownControl enabled" id="groups" title="Click to switch legend"><img src="images/group-dot.png"><b> View</b></div>
+
   <div class = "dropDownOptionsDiv" id="legendChoice">
     <div class = "dropDownItemDiv" id="legend-group"> <label><input type="checkbox" id="group-checkbox"><b>Group</b></label></div>
     <div class = "dropDownItemDiv enabled group-item" id="legend-type"><img src="images/group-dot.png"><b>Types</b></div>
@@ -104,11 +113,15 @@
     <div class = "dropDownItemDiv" id="fade" title="Fade outdated sites over time.">
       <label><input type="checkbox" id="fadeCheckbox"><b>Fading</b></label>
     </div>
+
     <div class = "dropDownItemDiv" id="legend-clusters" title="Enable markers clustering.">
       <label><input type="checkbox" id="clusters-checkbox"><b>Clustering</b></label>
     </div>
+
   </div>
+
 </div>
+
 <div id='atlas-hidden-latitude' style='hidden:true;'></div>
 <div id='atlas-hidden-longitude' style='hidden:true;'></div>
 
