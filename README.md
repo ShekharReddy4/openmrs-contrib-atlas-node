@@ -9,14 +9,18 @@ Installation of server
 
 :- npm install. (presuming you have node installed)
 
-:- populate the database.
+:- username of your database : root
 
-:- clone the repo from [here](https://github.com/ShekharReddy4/atlas-mock-id) and follow the installation instructions there to get mock id auth to atlas (not required now i.e: will update when mandatory)
+:- password of your database : root
 
-:- Run the app.
+:- [populate the database](https://gist.github.com/ShekharReddy4/f15353ca4bdbb0677b049d4ab1555cdf) (includes everything from creating a database to inserting the dummy data).
+
+:- Run the app using command >nodemon in the terminal.
+
+:- fireup your browser and goto localhost:3001(make sure that port is not occupied otherwise you have to change the port [here](https://github.com/ShekharReddy4/openmrs-contrib-atlas-node/blob/master/bin/www#L15) ) 
 
 Note:
 
- npm install --save package-name   -----> is to install and save a package in package.json
+Pull the latest changes.
 
- npm rm --save package-name        -----> is to remove/uninstall a package in package.json
+Make sure nodemon installed globally
