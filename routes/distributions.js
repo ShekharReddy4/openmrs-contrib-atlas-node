@@ -25,14 +25,14 @@ router.get('/distributions', function(req, res, next) {
     connection.query("SELECT * FROM distributions", function (error, rows, field) {
         if(!!error){
             console.log('error');
-            connection.end();
+            //connection.end();
         }
         else{
             //var data  = JSON.stringify(rows);
             res.setHeader('Content-Type', 'application/json');
             res.json(rows);
             //console.log(JSON.stringify(rows));
-            connection.end();
+            //connection.end();
         }
     });
 

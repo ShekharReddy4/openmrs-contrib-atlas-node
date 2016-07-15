@@ -30,11 +30,11 @@
     var countsEnabled = 1;
     var moduleHasSite = null;
 
-    var viewParam = {
-      site : null,
-      position : new google.maps.LatLng(15,15),
-      zoom : 3
-    };
+    if (auth != null)
+      var auth_site = JSON.parse(auth);
+    else
+      var auth_site = "";
+
     var currentUser;
     var userEmail;
     var userName;
@@ -52,6 +52,11 @@
     var shadows = [];
     var fadeOverTime = false;
     var legendGroups = 0;
+    var viewParam = {
+      site : null,
+      position : new google.maps.LatLng(15,15),
+      zoom : 3
+    };
     setTimeout('initialize()', 500);
 
     $(document).ready(function() {
