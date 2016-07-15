@@ -265,7 +265,7 @@ function Icons() {
     if (clustersEnabled) {
         icons = {
             Other: {
-                icon: "https://google-maps-utility-library-v3.googlecode.com/svn/trunk/markerclustererplus/images/m1.png",
+                icon: "https://googlemaps.github.io/js-marker-clusterer/images/m1.png",
                 label: "Other"
             }
         };
