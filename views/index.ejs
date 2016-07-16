@@ -57,6 +57,35 @@
       position : new google.maps.LatLng(15,15),
       zoom : 3
     };
+
+   // if (!(jquery.isEmptyObject(req.query.site))
+   // viewParam.site = req.query.site;
+
+    /*if (!(jquery.isEmptyObject(req.query.zoom) && is_numeric(req.query.zoom)
+      viewParam.zoom = 'req.query.zoom';
+
+   /* if ((!(jquery.isEmptyObject(req.query.position)) && preg_match('/^[-+]?([1-8]?\d(\.\d+)?|90(\.0+)?),*[-+]?(180(\.0+)?|((1[0-7]\d)|([1-9]?\d))(\.\d+)?)$/', Input::get('position')))
+      viewParam.position = new google.maps.LatLng({{ Input::get('position') }});
+
+    if (Input::has('legend'))
+      switch("{{ Input::get('legend') }}") {
+        case "site" :
+          legendGroups = 2;
+          break;
+        case "type" :
+          legendGroups = 0;
+          break;
+        case "version" :
+          legendGroups = 1;
+          break;
+        default :
+          legendGroups = 0;
+      }
+
+    @if (Input::get('clusters') == true)
+      clustersEnabled = 1;
+      legendGroups = 2;*/
+
     setTimeout('initialize()', 500);
 
     $(document).ready(function() {

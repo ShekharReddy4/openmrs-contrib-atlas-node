@@ -19,7 +19,7 @@ connection.connect(function (error) {
     }
 });
 
-/* GET all the markerSites */
+/* GET all the distributions */
 router.get('/distributions', function(req, res, next) {
 
     connection.query("SELECT * FROM distributions", function (error, rows, field) {
@@ -35,10 +35,7 @@ router.get('/distributions', function(req, res, next) {
             //connection.end();
         }
     });
-
-    //jus for now, i should change this later
-    //res.render('index', { title: 'OpenMRS Atlas' });
-
+    
 });
 
 module.exports = router;
