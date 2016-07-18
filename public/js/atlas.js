@@ -441,6 +441,7 @@ function loadSites(json) {
     loadVersion(json);
     for (i = 0; i < json.length; i++) {
         var site = json[i];
+        console.log(site);
         if (!site.hasOwnProperty("uuid"))
             site.uuid = null;
         var fadeGroup = getFadeGroup(site);

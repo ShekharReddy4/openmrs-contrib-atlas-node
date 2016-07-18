@@ -57,7 +57,46 @@
       position : new google.maps.LatLng(15,15),
       zoom : 3
     };
-    setTimeout('initialize()', 500);
+
+
+    function getParameterByName(name, url) {
+      if (!url) url = window.location.href;
+      name = name.replace(/[\[\]]/g, "\\$&");
+      var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+              results = regex.exec(url);
+      if (!results) return null;
+      if (!results[2]) return '';
+      return decodeURIComponent(results[2].replace(/\+/g, " "));
+    }
+
+    function parameterExists(name){
+      return (getParameterByName(name) !== null)
+    }
+    //console.log(getParameterByName('zoom')*1)
+    if (parameterExists("zoom")) {
+      viewParam.zoom=(getParameterByName("zoom")*1);
+    }
+
+    if (parameterExists("site")) {
+      viewParam.site=(getParameterByName("site"));
+    }
+
+    //console.log(getParameterByName('legend'))
+    if (parameterExists("legend")) {
+      switch (getParameterByName("legend")) {
+        case "site" :
+          legendGroups = 2;
+          break;
+        case "type" :
+          legendGroups = 0;
+          break;
+        case "version" :
+          legendGroups = 1;
+          break;
+        default :
+          legendGroups = 0;
+      }
+    }
 
     $(document).ready(function() {
 
@@ -71,6 +110,8 @@
       userEmail = $('#user-email').val().trim();
 
     });
+
+    setTimeout('initialize()', 500);
   </script>
 
 </head>
