@@ -72,7 +72,7 @@
     function parameterExists(name){
       return (getParameterByName(name) !== null)
     }
-    //console.log(getParameterByName('zoom')*1)
+
     if (parameterExists("zoom")) {
       viewParam.zoom=(getParameterByName("zoom")*1);
     }
@@ -81,7 +81,6 @@
       viewParam.site=(getParameterByName("site"));
     }
 
-    //console.log(getParameterByName('legend'))
     if (parameterExists("legend")) {
       switch (getParameterByName("legend")) {
         case "site" :
@@ -98,6 +97,16 @@
       }
     }
 
+    var pattern = /^[-+]?([1-8]?\d(\.\d+)?|90(\.0+)?),*[-+]?(180(\.0+)?|((1[0-7]\d)|([1-9]?\d))(\.\d+)?)$/
+
+    if (parameterExists("position")&& pattern.test(getParameterByName("position"))) {
+      var param = getParameterByName('position').split(',');
+      param[0]=param[0].trim();
+      param[1]=param[1].trim();
+      param[0]=Number(param[0]);
+      param[1]=Number(param[1]);
+      viewParam.position = new google.maps.LatLng(param[0], param[1]);
+    }
     $(document).ready(function() {
 
       initLegendChoice();
