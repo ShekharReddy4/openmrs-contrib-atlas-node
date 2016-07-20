@@ -78,7 +78,9 @@
     }
 
     if (parameterExists("site")) {
+      console.log(getParameterByName('site')+ parameterExists('site'));
       viewParam.site=(getParameterByName("site"));
+      console.log(viewParam.site);
     }
 
     if (parameterExists("legend")) {

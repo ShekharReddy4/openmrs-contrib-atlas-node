@@ -87,13 +87,18 @@ function initDownloadButton() {
 
 function customizeView() {
   if (viewParam.site !== null) {
+    console.log('entered the customview');
     var site;
     sites.forEach(function(val, index) {
-      if (val.siteData.site_id === viewParam.site )
-        site =  val;
+      console.log(val.siteData.site_id);
+      if (val.siteData.site_id === viewParam.site ) {
+        site = val;
+        console.log(viewParam.site + site);
+      }
     });
     if (site) {
       viewParam.position = site.marker.getPosition();
+      console.log('if condition passed')
       setTimeout(function() {
         google.maps.event.trigger(site.marker, 'click');
       }, 1000);  
