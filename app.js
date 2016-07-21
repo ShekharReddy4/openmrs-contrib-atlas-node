@@ -10,6 +10,7 @@ var uuid = require('uuid');
 var index = require('./routes/index');
 var markerSites = require('./routes/markerSites');
 var distributions = require('./routes/distributions');
+var auth = require('./routes/authentication');
 
 var app = express();
 console.log(uuid.v4());
@@ -30,5 +31,6 @@ app.use(morgan('dev'));//this package logs the requests and errors in the consol
 app.use(index);
 app.use(markerSites);
 app.use(distributions);
+app.use(auth);
 
 module.exports = app;

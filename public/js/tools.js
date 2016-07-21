@@ -6,8 +6,8 @@ $(function () {
     var lng = map.getCenter().lng();
     var zoom = map.getZoom();
     var url = "capture?legend=" + legendGroups + "&zoom="
-     + zoom + "&lat=" + lat + "&lng=" + lng ;
-     console.log(url);
+        + zoom + "&lat=" + lat + "&lng=" + lng ;
+    console.log(url);
     window.location = url ;
   });
   var message = "<b><h3>About OpenMRS Atlas</h3></b>";
@@ -82,7 +82,7 @@ function initDownloadButton() {
     var url = "download?legend=" + legend + "&size=3840x2160" + "&fade=" + fadeOverTime;
     window.location = url ;
   });
-  
+
 }
 
 function customizeView() {
@@ -101,7 +101,7 @@ function customizeView() {
       console.log('if condition passed')
       setTimeout(function() {
         google.maps.event.trigger(site.marker, 'click');
-      }, 1000);  
+      }, 1000);
     }
   }
   setTimeout(function() {
@@ -112,17 +112,17 @@ function customizeView() {
 
 function getLegend() {
   switch(legendGroups) {
-      case 2 :
-        return "site";
-        break;
-      case 0 :
-        return "type";
-        break;
-      case 1 :
-        return "version";
-        break;
-      default :
-        return "type";
+    case 2 :
+      return "site";
+      break;
+    case 0 :
+      return "type";
+      break;
+    case 1 :
+      return "version";
+      break;
+    default :
+      return "type";
   }
 }
 function getShareUrl(){
@@ -131,7 +131,7 @@ function getShareUrl(){
   var lng = map.getCenter().lng();
   var zoom = map.getZoom();
   var url = location.protocol + "//" + location.host + "?legend=" + getLegend() + "&zoom="
-   + zoom + "&position=" + lat + "," + lng + "&clusters=" + clustersEnabled;
+      + zoom + "&position=" + lat + "," + lng + "&clusters=" + clustersEnabled;
   url = (site == null) ? url : (url + "&site=" + site);
   return url;
 }

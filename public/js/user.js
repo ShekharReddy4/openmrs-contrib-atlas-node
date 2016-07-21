@@ -24,8 +24,8 @@ function initLoginButton() {
 }
 $(function () {
   $("#map_canvas").on("submit", "form", (function(e) {
-        saveMarker(e);
-    }));
+    saveMarker(e);
+  }));
   $("#map_canvas").on("click", "#delete", function(e){
     e.preventDefault();
     var id = $(this).attr("value");
@@ -37,7 +37,7 @@ $(function () {
     $("#version").html("");
     $("#version").append("<option value=''></option>");
     $(existingVersion).each(function (i) {
-        $("#version").append("<option value=\""+existingVersion[i]+"\">"+existingVersion[i]+"</option>");
+      $("#version").append("<option value=\""+existingVersion[i]+"\">"+existingVersion[i]+"</option>");
     });
   });
 });
@@ -54,32 +54,32 @@ function getGeolocation() {
     }, handle_errors);
   } else {
     yqlgeo.get("visitor", function(position) {
-     if (response.error) {
-      var error = { code: 0 };
-      handle_error(error);
+      if (response.error) {
+        var error = { code: 0 };
+        handle_error(error);
+        return;
+      }
+      myPosition = new google.maps.LatLng(position.place.centroid.latitude,
+          position.place.centroid.longitude);
+      map.setCenter(myPosition);
+      map.setZoom(10);
       return;
-    }
-    myPosition = new google.maps.LatLng(position.place.centroid.latitude,
-      position.place.centroid.longitude);
-    map.setCenter(myPosition);
-    map.setZoom(10);
-    return;
-  });
+    });
   }
 }
 
 function handle_errors(error) {
   switch (error.code) {
     case error.PERMISSION_DENIED:
-    alert("User did not share geolocation data");
-    break;
+      alert("User did not share geolocation data");
+      break;
     case error.POSITION_UNAVAILABLE:
-    alert("Could not detect current position");
-    break;
+      alert("Could not detect current position");
+      break;
     case error.TIMEOUT: alert("Retrieving position timeout");
-    break;
+      break;
     default: alert("Unknown error");
-    break;
+      break;
   }
 }
 
@@ -162,13 +162,13 @@ function deleteMarker(site) {
       type: "DELETE",
       dataType: "text",
     })
-    .done(function(response) {
-      sites[site].marker.setMap(null);
-    })
-    .fail(function(jqXHR, textStatus, errorThrown) {
-      bootbox.alert( "Error deleting your marker - Please try again ! - " + jqXHR.statusText );
-      return;
-    });
+        .done(function(response) {
+          sites[site].marker.setMap(null);
+        })
+        .fail(function(jqXHR, textStatus, errorThrown) {
+          bootbox.alert( "Error deleting your marker - Please try again ! - " + jqXHR.statusText );
+          return;
+        });
   } else {
     sites[site].marker.setMap(null);
   }
@@ -177,7 +177,7 @@ function deleteMarker(site) {
     moduleHasSite = 0;
   }
   if (moduleUUID !== null && window !== window.top) {
-      parent.postMessage("update", "*");
+    parent.postMessage("update", "*");
   }
   var i = auth_site.indexOf(sites[site].siteData.uuid);
   if(i !== -1) {
@@ -200,7 +200,7 @@ function createEditInfoWindow(site, marker) {
   google.maps.event.addListener(infowindow, "closeclick", function() {
     sites[site.id].editBubbleOpen = false;
   });
-  if ((site.uid == currentUser) || (site.uuid) !== null) { 
+  if ((site.uid == currentUser) || (site.uuid) !== null) {
     $("#map_canvas").on("click", "#undo", function(e){
       e.preventDefault();
       var id = $(this).attr("value");
@@ -215,75 +215,75 @@ function createEditInfoWindow(site, marker) {
 }
 
 function saveMarker(e) {
-    e.preventDefault();
-    var id = $("#site").val();
-    var site = sites[id].siteData;
-    if (moduleUUID === null || site.module !== 1) {
-      var patients = $("#patients").val().trim();
-      var encounters = $("#encounters").val().trim();
-      var obs = $("#observations").val().trim();
-      var version = $("select#version").val().trim();
-      site.distribution = getSelectedDistributionValue();
-      site.nonStandardDistributionName = $("#nonStandardDistributionName").val().trim();
-      site.observations = obs;
-      site.patients = patients;
-      site.encounters = encounters;
-      site.version = version;
-    }
-    if (site.module == 1) {
-      var stats = $('#include-count').is(':checked') ? 1 : 0; 
-      site.show_counts = stats;
-    }
+  e.preventDefault();
+  var id = $("#site").val();
+  var site = sites[id].siteData;
+  if (moduleUUID === null || site.module !== 1) {
+    var patients = $("#patients").val().trim();
+    var encounters = $("#encounters").val().trim();
+    var obs = $("#observations").val().trim();
+    var version = $("select#version").val().trim();
+    site.distribution = getSelectedDistributionValue();
+    site.nonStandardDistributionName = $("#nonStandardDistributionName").val().trim();
+    site.observations = obs;
+    site.patients = patients;
+    site.encounters = encounters;
+    site.version = version;
+  }
+  if (site.module == 1) {
+    var stats = $('#include-count').is(':checked') ? 1 : 0;
+    site.show_counts = stats;
+  }
 
-    var image = $("#image").val();
-    var name = $("#name").val().trim();
-    var mail = $("#email").val().trim();
-    var notes = $("#notes").val().trim();
-    var contact =$("#contact").val().trim();
-    var url  = $("#url").val().trim();
-    var type = $("select#type").val().trim();
-    if(name === "" || id === "") {
-      bootbox.alert("Site Name is missing !");
-    } else {
-      var pos = sites[id].marker.getPosition();
-      site.name = name;
-      site.email =  mail;
-      site.url = url;
-      site.date_changed = new Date().toDateString();
-      site.contact = contact;
-      site.notes = notes;
-      site.image = image;
-      site.type = type;
-      site.longitude = pos.lng();
-      site.latitude = pos.lat();
-      sites[id].siteData = site;
-      sites[id].fadeGroup = getFadeGroup(site);
-      sites[id].infowindow.setContent(contentInfowindow(site));
-      sites[id].editwindow.setContent(contentEditwindow(site));
-      sites[id].editwindow.close();
-      sites[id].editBubbleOpen = false;
-      sites[id].marker.setDraggable(false);
-      var json = JSON.stringify(site);
-      $.ajax({
-        url: "ping.php/atlas",
-        type: "POST",
-        data: json,
-        dataType: "text",
-      })
-      .done(function(response) {
-        site.uuid = response;
-        if (moduleUUID !== null && moduleHasSite === 0) {
-          site.module = 1;
-          moduleHasSite = 1;
-        }
-        if (moduleUUID !== null && site.module === 1) {
-          parent.postMessage("save", "*");
-        }
+  var image = $("#image").val();
+  var name = $("#name").val().trim();
+  var mail = $("#email").val().trim();
+  var notes = $("#notes").val().trim();
+  var contact =$("#contact").val().trim();
+  var url  = $("#url").val().trim();
+  var type = $("select#type").val().trim();
+  if(name === "" || id === "") {
+    bootbox.alert("Site Name is missing !");
+  } else {
+    var pos = sites[id].marker.getPosition();
+    site.name = name;
+    site.email =  mail;
+    site.url = url;
+    site.date_changed = new Date().toDateString();
+    site.contact = contact;
+    site.notes = notes;
+    site.image = image;
+    site.type = type;
+    site.longitude = pos.lng();
+    site.latitude = pos.lat();
+    sites[id].siteData = site;
+    sites[id].fadeGroup = getFadeGroup(site);
+    sites[id].infowindow.setContent(contentInfowindow(site));
+    sites[id].editwindow.setContent(contentEditwindow(site));
+    sites[id].editwindow.close();
+    sites[id].editBubbleOpen = false;
+    sites[id].marker.setDraggable(false);
+    var json = JSON.stringify(site);
+    $.ajax({
+      url: "ping.php/atlas",
+      type: "POST",
+      data: json,
+      dataType: "text",
+    })
+        .done(function(response) {
+          site.uuid = response;
+          if (moduleUUID !== null && moduleHasSite === 0) {
+            site.module = 1;
+            moduleHasSite = 1;
+          }
+          if (moduleUUID !== null && site.module === 1) {
+            parent.postMessage("save", "*");
+          }
 
-        if (auth_site.indexOf(response) === -1)
-          auth_site.push(response);
-        if (auth_site.length > 0)
-          $("#editSite").attr("hidden", false);
+          if (auth_site.indexOf(response) === -1)
+            auth_site.push(response);
+          if (auth_site.length > 0)
+            $("#editSite").attr("hidden", false);
 
           if (site.distribution == null && (site.nonStandardDistributionName != null && site.nonStandardDistributionName != "")) {
             fetchDistributions()
@@ -295,25 +295,25 @@ function saveMarker(e) {
                 });
           }
 
-        repaintMarkers();
-        //bootbox.alert("Marker saved");
-      })
-      .fail(function(jqXHR, textStatus, errorThrown) {
-        bootbox.alert( "Error saving your marker - Please try again ! - " + jqXHR.statusText );
-      });
-    }
-    return false;
+          repaintMarkers();
+          //bootbox.alert("Marker saved");
+        })
+        .fail(function(jqXHR, textStatus, errorThrown) {
+          bootbox.alert( "Error saving your marker - Please try again ! - " + jqXHR.statusText );
+        });
+  }
+  return false;
 }
 
 function contentInfowindow(site) {
-var html = "<div class='site-bubble'>";
+  var html = "<div class='site-bubble'>";
   html += "<div class='site-name'>" + site.name + "</div>";
   html += "<div class='site-panel'>";
   if (site.image)
     html += "<img class='site-image' src='" + site.image + "' width='80px' height='80px' alt='thumbnail' />";
   if (site.url)
     html += "<div class='site-url'><a target='_blank' href='" + safeUrl(site.url) + "' title='" + site.url + "'>"
-            + displayUrl(safeUrl(site.url)) + "</a></div>";
+        + displayUrl(safeUrl(site.url)) + "</a></div>";
   if (site.show_counts == true) {
     if (site.patients && site.patients !== "0")
       html += "<div class='site-count'>" + addCommas(site.patients) + " patients</div>";
@@ -337,7 +337,7 @@ var html = "<div class='site-bubble'>";
     html += "<fieldset class='site-notes'>" + site.notes + "</fieldset>";
   if (site.type)
     html += "<div class='site-type'><span class='site-type'>" + site.type + "</span>";
-  if (versionForSite(site))  
+  if (versionForSite(site))
     html += "<span class='site-version'>" + versionForSite(site) + "</span></div>";
   if (site.date_changed) {
     var date_updated = dateChangedString(site);
@@ -379,21 +379,21 @@ function contentEditwindow(site) {
   if (site.module !== 1) {
     html += "<div class='form-inline'> OpenMRS Version ";
     html += "<select title='OpenMRS Version' id='version' class='form-control input-sm'>";
-    html += "<option selected>" + site.version + "</option>"; 
+    html += "<option selected>" + site.version + "</option>";
     html += "</select></div>";
   }
 
   html += "<div class='row' style='margin-top:10px;'><div class='col-xs-8'>";
   html += "<select title='Site type' id='type' class='form-control input-sm'>"
-  html += (site.type == "Clinical") ? "<option selected>" : "<option>"; 
+  html += (site.type == "Clinical") ? "<option selected>" : "<option>";
   html += "Clinical</option>"
-  html += (site.type == "Evaluation") ? "<option selected>" : "<option>"; 
+  html += (site.type == "Evaluation") ? "<option selected>" : "<option>";
   html += "Evaluation</option>"
-  html += (site.type == "Development") ? "<option selected>" : "<option>"; 
+  html += (site.type == "Development") ? "<option selected>" : "<option>";
   html += "Development</option>"
-  html += (site.type == "Research") ? "<option selected>" : "<option>"; 
+  html += (site.type == "Research") ? "<option selected>" : "<option>";
   html += "Research</option>"
-  html += (site.type == "Other") ? "<option selected>" : "<option>"; 
+  html += (site.type == "Other") ? "<option selected>" : "<option>";
   html += "Other</option>"
   html += "</select></div>";
   html += "<input type='hidden' id='site' value='"+site.id+"'/>";

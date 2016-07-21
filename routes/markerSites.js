@@ -11,7 +11,7 @@ var connection = mysql.createConnection({
     database : 'atlas'
 });
 
-//get the conncetion
+//get the connection
 connection.connect(function (error) {
     if(!!error){
         console.log('Error');
@@ -28,18 +28,10 @@ router.get('/markerSites', function(req, res, next) {
             console.log(error);
         }
         else{
-            //var data  = JSON.stringify(rows);
             res.setHeader('Content-Type', 'application/json');
             res.json(rows);
-           // console.log('it is executing');
-            //connection.end();
-            //console.log(JSON.stringify(rows));
         }
     });
-    
-    //jus for now, i should change this later
-    //res.render('index', { title: 'OpenMRS Atlas' });
-
 });
 
 /*Get a specific marker with uid parameter*/

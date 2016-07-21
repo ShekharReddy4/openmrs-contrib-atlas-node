@@ -202,10 +202,10 @@ function initialize() {
     var help = document.getElementById("help");
     map.controls[google.maps.ControlPosition.TOP_RIGHT].push(help);
 
-   /* if (moduleUUID !== null) {
+    if (moduleUUID !== null) {
         var alert = document.getElementById("alert");
         map.controls[google.maps.ControlPosition.BOTTOM_CENTER].push(alert);
-    }*/
+    }
 
     fetchDistributions()
         .always(function(){
@@ -221,6 +221,7 @@ function fetchMarkerSites() {
                 return;
             }
             loadSites(data);
+            console.log(data);
         })
 }
 
@@ -376,6 +377,7 @@ function colorForSite(site) {
                 image.url = icons["1"].icon;
                 break;
             case version[1][0]:
+                console.log(version[1][0]);
                 image.url = icons["2"].icon;
                 break;
             case version[2][0]:
@@ -441,7 +443,6 @@ function loadSites(json) {
     loadVersion(json);
     for (i = 0; i < json.length; i++) {
         var site = json[i];
-        console.log(site);
         if (!site.hasOwnProperty("uuid"))
             site.uuid = null;
         var fadeGroup = getFadeGroup(site);
@@ -455,8 +456,8 @@ function loadSites(json) {
         repaintMarkers();
         if (site.version)
             version.push(versionMajMinForSite(site));
-       /* if (moduleHasSite !== 1 && auth_site.indexOf(site.uuid) !== -1 && moduleUUID !== null && auth_site.length === 1)
-            uniqueMarker = marker;*/
+        if (moduleHasSite !== 1 && auth_site.indexOf(site.uuid) !== -1 && moduleUUID !== null && auth_site.length === 1)
+            uniqueMarker = marker;
         sites[site.id] = {
             "siteData": site,
             "marker": marker,
@@ -720,3 +721,8 @@ function createInfoWindow(site, marker) {
     });
     return infowindow;
 }
+$(document).ready(function(){
+    $("#login").click(function(){
+        $.ajax({url: "/login"})
+    })
+});
