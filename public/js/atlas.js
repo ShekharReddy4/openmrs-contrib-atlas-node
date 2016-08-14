@@ -723,6 +723,6 @@ function createInfoWindow(site, marker) {
 }
 $(document).ready(function(){
     $("#login").click(function(){
-        $.ajax({url: "/login"})
+        $.ajax({url: "/login"});
     })
 });
