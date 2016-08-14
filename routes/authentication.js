@@ -9,13 +9,14 @@ var router = express.Router();
 //GET login
 router.get('/login', function(req, res, next) {
 
-    res.redirect('http://mockid.com:3000/');
+    res.redirect('http://localhost:8000/');
 });
 
 module.exports = router;
-router.get('/auth/multipass/callback', function (req, res, next) {
+router.get('/auth/multipass/callback', function (req, res) {
     
     var token = req.query.multipass;
     var obj = multipass.decode(token);
+    console.log(obj);
     res.redirect('http://localhost:3001/');
 });
