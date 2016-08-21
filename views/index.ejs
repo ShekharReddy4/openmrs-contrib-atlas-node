@@ -148,6 +148,24 @@
   </div>
 </div>
 
+<%if (user) { %>
+<div class="atlas-container control logged" id ="login">
+  <div class="dropDownControl" id="user"><span class="glyphicon glyphicon-user"></span> <%= user.uid %></div>
+  <div class = "dropDownOptionsDiv" id="logout">
+    <!--@if ($user->role == 'ADMIN' && !Input::has('uuid'))
+    <div class = "dropDownItemDiv" id="admin"><span class="glyphicon glyphicon-wrench"></span> {{ link_to_route('admin', ' Admin' )}}</div>
+    @endif -->
+    <div class = "dropDownItemDiv" id="locateMe"><img src="images/blue-dot.png">Locate Me</div>
+    <div class = "dropDownItemDiv" id="editSite" >
+    <img src="images/blue-dot.png">Edit my site</div>
+  <div class = "dropDownItemDiv" id="newSite"><img src="images/blue-dot.png">Add new site</div>
+  <div class = "dropDownItemDiv" id="logout"><span class="glyphicon glyphicon-log-out"></span>
+
+  </div>
+  <div class="separatorDiv"></div>
+</div>
+<% } %>
+
 <div class="atlas-container loginControl dropDownControl control" title="Click to sign in with your OpenMRS ID" id ="login">
   <span class="glyphicon glyphicon-log-in"></span>Sign In
 </div>

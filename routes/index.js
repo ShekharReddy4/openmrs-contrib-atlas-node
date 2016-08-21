@@ -5,10 +5,11 @@ var router = express.Router();
 router.get('/', function(req, res, next) {
 
     res.render('index', {
-      title: 'OpenMRS Atlas'
+      title: 'OpenMRS Atlas',
+      isAuth: req.session,
+      user: req.session.user  
     });
-  //  console.log(((req.query.zoom)*1) + req.query.clusters+req.query.legend )
-
+    
 });
 
 module.exports = router;
