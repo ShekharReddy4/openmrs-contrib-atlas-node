@@ -1,15 +1,13 @@
-var express = require('express');
-var router = express.Router();
+module.exports = function(app, db) {
+    function importRoute(routeName) {
+        var str = './'+routeName;
+        var routeModule = require(str);
 
-/* GET home page. */
-router.get('/', function(req, res, next) {
+        app.use(routeModule(db));
+    }
 
-    res.render('index', {
-      title: 'OpenMRS Atlas',
-      isAuth: req.session,
-      user: req.session.user  
-    });
-    
-});
-
-module.exports = router;
+    importRoute('default');
+    importRoute('distributions');
+    importRoute('markerSites');
+    importRoute('authentication');
+};

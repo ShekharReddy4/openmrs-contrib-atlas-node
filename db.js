@@ -1,4 +1,4 @@
-var mysql      = require('mysql');
+var mysql = require('mysql');
 
 // set the mysql properties
 var connection = mysql.createConnection({
@@ -8,6 +8,15 @@ var connection = mysql.createConnection({
     user     : 'root',
     password : 'root',
     database : 'atlas'
+});
+
+//get the connection
+connection.connect(function (error) {
+    if(!!error){
+        console.log('Error');
+    }else{
+        console.log('connected');
+    }
 });
 
 module.exports = connection;
