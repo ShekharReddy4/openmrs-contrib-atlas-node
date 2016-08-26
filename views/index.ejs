@@ -147,7 +147,7 @@
   </div>
 </div>
 
-<%if (user) { %>
+<%if (user != null) { %>
 <div class="atlas-container control logged" id ="login">
   <div class="dropDownControl" id="user"><span class="glyphicon glyphicon-user"></span> <%= user.uid %></div>
   <div class = "dropDownOptionsDiv" id="logout">
@@ -158,13 +158,11 @@
     <div class = "dropDownItemDiv" id="editSite" >
     <img src="images/blue-dot.png">Edit my site</div>
   <div class = "dropDownItemDiv" id="newSite"><img src="images/blue-dot.png">Add new site</div>
-  <div class = "dropDownItemDiv" id="logout"><span class="glyphicon glyphicon-log-out"></span>
-
-  </div>
+  <div class = "dropDownItemDiv" onClick="location.href='../logout'" id="logout"><span class="glyphicon glyphicon-log-out"></span>Logout</div>
   <div class="separatorDiv"></div>
 </div>
 <% }  else { %>
-<div class="atlas-container loginControl dropDownControl control" title="Click to sign in with your OpenMRS ID" id ="login">
+<div class="atlas-container loginControl dropDownControl control" onClick="location.href='../login'" title="Click to sign in with your OpenMRS ID" id ="login">
   <span class="glyphicon glyphicon-log-in"></span>Sign In
 </div>
 <% } %>
@@ -200,9 +198,9 @@
 
 <div id='atlas-hidden-latitude' style='hidden:true;'></div>
 <div id='atlas-hidden-longitude' style='hidden:true;'></div>
-<input type="hidden" id="user-id" value="{{ $user->uid }} " />
-<input type="hidden" id="user-name" value="{{ $user->name }} " />
-<input type="hidden" id="user-email" value="{{ $user->email }} " />
+<input type="hidden" id="user-id" value= <% if(user != null){user.uid}%> />
+<input type="hidden" id="user-name" value= <% if(user != null){user.name}%> />
+<input type="hidden" id="user-email" value= <% if(user != null){user.email}%> />
 
 </body>
 

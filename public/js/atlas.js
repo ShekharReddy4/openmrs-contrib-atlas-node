@@ -721,8 +721,3 @@ function createInfoWindow(site, marker) {
     });
     return infowindow;
 }
-$(document).ready(function(){
-    $("#login").click(function(){
-        $.ajax({url: "/login"});
-    })
-});

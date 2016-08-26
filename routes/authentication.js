@@ -24,5 +24,10 @@ module.exports = function () {
         
     });
     
+    router.get('/logout', function (req, res) {
+        req.session.destroy();
+        res.redirect('/');
+    });
+    
     return router;
 };
