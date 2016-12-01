@@ -10,7 +10,7 @@ module.exports = function () {
     //GET login
     router.get('/login', function(req, res, next) {
 
-        res.redirect('http://localhost:8080/authenticate/atlas');
+        res.redirect('http://localhost:3001/authenticate/atlas');
     });
 
     router.get('/auth/multipass/callback', function (req, res) {
