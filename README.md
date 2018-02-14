@@ -103,7 +103,7 @@ OpenMRS-contrib-atlas-node is the server code written in nodejs for [OpenMRS ATL
 
 #### SetUp the OpenMRS ID
 
-I have written a mockID whose mechanism is similar to the OpenMRS ID. Follow the instructions in the README of [atlas-mockid-node](https://github.com/ShekharReddy4/openmrs-contrib-atlas-node#configure-the-app-as-per-your-db-credentials-and-port) to get the setup of mockID locally.
+I have written a mockID whose mechanism is similar to the OpenMRS ID. Follow the instructions in the README of [atlas-mockid-node](https://github.com/ShekharReddy4/atlas-mockid-node) to get the setup of mockID locally.
 
 #### Run
 
