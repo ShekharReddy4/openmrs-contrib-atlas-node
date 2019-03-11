@@ -3,6 +3,16 @@ var router = express.Router();
 var uuid = require('uuid');
 
 module.exports = function(connection) {
+
+    /* Middleware to check whether the user is logged in */
+    function isLoggedIn(req, res, next) {
+        if(req.session.authenticated) {
+            return next();
+        } else {
+            res.redirect("/login");
+        }
+    };
+
     /* GET all the markerSites */
     router.get('/markerSites', function(req, res, next) {
 
@@ -57,7 +67,7 @@ module.exports = function(connection) {
     });
 
     //POST /marker/:id
-    router.post('/marker/', function (req, res, next) {
+    router.post('/marker/', isLoggedIn, function (req, res, next) {
         var id=uuid.v4();
         var latitude=req.body.latitude;
         var longitude=req.body.longitude;
@@ -93,7 +103,7 @@ module.exports = function(connection) {
         });
     });
 
-    router.post('/marker/:id', function (req, res, next) {
+    router.post('/marker/:id', isLoggedIn, function (req, res, next) {
 
         var id=req.params['id'];
         var latitude=req.body.latitude;
